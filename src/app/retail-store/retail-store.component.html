@@ -1,0 +1,67 @@
+<br>
+<div class="container">
+    <div class="card">
+      <div class="card-header">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-9">
+              <p><strong><h3>Manage Retail Stores</h3></strong></p>
+            </div>
+            <div class="col-lg-1">
+              <button type="button" style="float: left;"
+              class="btn btn-primary" (click)="addRetailStore()">Add</button>
+            </div>
+            <div class="col-lg-1">
+              <button *ngIf="selectedRetailStore" type="button" style="float: left;"
+              class="btn btn-success" (click)="editRetailStore()">Edit</button>
+            </div>
+            <div class="col-lg-1">
+              <button *ngIf="selectedRetailStore" type="button" style="float: right;"
+              class="btn btn-danger" (click)="deleteRetailStore()">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <!-- Table -->
+        <div class="container">
+          <div *ngIf="showAlert" class="alert alert-danger" role="alert">
+            {{alertMsg}}
+          </div>
+          <p-table #dt1 [columns]="retailStoreCols" [value]="retailStores" [paginator]="true" [rows]="10"
+          [rowsPerPageOptions]="[5,10,20]" dataKey="storeId" [resizableColumns]="true"
+          [reorderableColumns]="true" selectionMode="single" [(selection)]="selectedRetailStore"
+          stateStorage="local" stateKey="statedemo-local-prod">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let retailStoreCol of retailStoreCols" [pSortableColumn]="retailStoreCol.field" pResizableColumn
+                    pReorderableColumn>
+                        {{retailStoreCol.header}}
+                        <p-sortIcon [field]="retailStoreCol.field"></p-sortIcon>
+                    </th>
+                </tr>
+                <tr>
+                    <th *ngFor="let retailStoreCol of retailStoreCols" [ngSwitch]="retailStoreCol.field" class="ui-fluid">
+                        <input pInputText type="text"
+                        (input)="dt1.filter($any($event.target).value, retailStoreCol.field, retailStoreCol.filterMatchMode)"
+                        [value]="$any(dt1.filters['name'])?.value">
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                    <td *ngFor="let retailStoreCol of retailStoreCols">
+                        {{rowData[retailStoreCol.field]}}
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+              <div style="text-align: left"  *ngIf="selectedRetailStore">
+                  Selected Product: {{selectedRetailStore ? selectedRetailStore.productName: ''}}
+              </div>
+            </ng-template>
+        </p-table>
+        </div>
+      </div>
+    </div>
+</div>
