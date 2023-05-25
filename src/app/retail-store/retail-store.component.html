@@ -34,7 +34,8 @@
           stateStorage="local" stateKey="statedemo-local-prod">
             <ng-template pTemplate="header" let-columns>
                 <tr>
-                    <th *ngFor="let retailStoreCol of retailStoreCols" [pSortableColumn]="retailStoreCol.field" pResizableColumn
+                    <th *ngFor="let retailStoreCol of retailStoreCols" 
+                    [pSortableColumn]="retailStoreCol.field" pResizableColumn
                     pReorderableColumn>
                         {{retailStoreCol.header}}
                         <p-sortIcon [field]="retailStoreCol.field"></p-sortIcon>

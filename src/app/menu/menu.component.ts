@@ -2,18 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
-  selector: 'app-logout',
-  templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.css']
+  selector: 'app-menu',
+  templateUrl: './menu.component.html',
+  styleUrls: ['./menu.component.css']
 })
-export class LogoutComponent implements OnInit {
+export class MenuComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
-    this.authService.logoutUser();
   }
 
+  isUserLoggedIn(): boolean {
+      return this.authService.isUserLoggedIn();
+  }
 }

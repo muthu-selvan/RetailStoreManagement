@@ -9,7 +9,6 @@ import { LogoutComponent } from './logout/logout.component';
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'login', component: LoginComponent},
 
   {path: 'retail-store', component: RetailStoreComponent, canActivate: [RouteGuardService]},
   {path: 'add-retail-store', component: AddRetailStoreComponent, canActivate: [RouteGuardService]},

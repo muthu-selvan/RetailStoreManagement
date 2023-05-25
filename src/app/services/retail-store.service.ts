@@ -9,6 +9,9 @@ import { ReturnResult } from '../classes/ReturnResult';
 })
 export class RetailStoreService  implements OnInit {
 
+  storeIds: string[] = [];
+  filteredRetailStoreIds: string[] = [];
+
   retailStoreCols: any[] = [
     {field:'storeId', header:'Store ID'},
     {field:'sku', header:'SKU'},
@@ -32,11 +35,26 @@ export class RetailStoreService  implements OnInit {
   }
 
   public saveRetailStore(retailStore: RetailStore) {
-    return this.http.post<ReturnResult>(`${API_URL}/rms/retailStore/${retailStore.storeId}`,retailStore);
+    return this.http.post<ReturnResult>(`${API_URL}/rms/retailStore`,retailStore);
   }
 
   public getRetailStoreHeaders(): any[] {
     return this.retailStoreCols;
+  }
+
+  public getRetailStorebyStoreId(storeId: number) {
+    return this.http.get<RetailStore>(`${API_URL}/rms/retailStore/${storeId}`);
+  }
+
+  public getFilteredRetailStoreIds(event: any): string[] {
+    this.filteredRetailStoreIds = [];
+    for(let i=0;i<this.filteredRetailStoreIds.length;i++) {
+      let restId = this.filteredRetailStoreIds[i];
+      if(restId.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
+        this.filteredRetailStoreIds.push(restId);
+      }
+    }
+    return this.filteredRetailStoreIds;
   }
 
 }

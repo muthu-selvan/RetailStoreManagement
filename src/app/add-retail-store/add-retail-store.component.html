@@ -1,1 +1,59 @@
-<p>add-retail-store works!</p>
+<br>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-13">
+            <p><strong><h3>Retail Store</h3></strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+        <div class="ui-fluid">
+          <div *ngIf="showAlert" class="alert alert-danger" role="alert">
+            {{alertMsg}}
+          </div>
+          
+          <!-- Product Name -->
+          <div class="p-field p-grid">
+            <label for="prodName" class="p-col-2 p-md-2">Product Name</label>
+            <div class="p-col-6 p-md-6">
+                <input id="prodName" style="width: 214px;" type="text" [(ngModel)]="productName" maxlength="20" pInputText>
+            </div>
+          </div>
+           <!-- SKU -->
+          <div class="p-field p-grid">
+            <label for="sku" class="p-col-2 p-md-2">SKU</label>
+            <div class="p-col-2">
+              <input id="sku" style="width: 214px;" type="text" [(ngModel)]="sku" maxlength="8" pInputText>
+            </div>
+          </div>
+          <!-- Price -->
+          <div class="p-field p-grid">
+            <label for="price" class="p-col-2 p-md-2">Price</label>
+            <div class="p-col-6 p-md-6">
+                <input id="price" style="width: 214px;" type="text" [(ngModel)]="price" maxlength="10" pInputText>
+            </div>
+          </div>
+          <!-- Date -->
+          <div class="p-field p-grid">
+              <label for="date" class="p-col-2 p-md-2">Date</label>
+              <div class="p-col-10 p-md-10">
+                  <p-calendar [(ngModel)]="date" name="date" dateFormat='dd/mm/yy'></p-calendar>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-10"></div>
+            <div class="col-lg-1">
+              <button type="button" style="float: right;" class="btn btn-danger" (click)="cancel()">Cancel</button>
+            </div>
+            <div class="col-lg-1">
+              <button type="button" style="float: right;" class="btn btn-success" (click)="save()">Save</button>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

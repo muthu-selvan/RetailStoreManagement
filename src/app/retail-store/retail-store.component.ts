@@ -42,7 +42,6 @@ export class RetailStoreComponent implements OnInit {
           this.getAllRetailStoreInfo();
         } else {
             this.showAlert = true;
-            console.log(`${this.returnResult.message}`)
             this.alertMsg = this.returnResult.message;
         }
       }
@@ -62,7 +61,7 @@ export class RetailStoreComponent implements OnInit {
   }
 
   public editRetailStore() {
-    this.router.navigate(['edit-product',
+    this.router.navigate(['edit-retail-store',
      this.selectedRetailStore?.storeId
     ]);
   }
